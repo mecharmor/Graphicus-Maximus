@@ -1,0 +1,6 @@
+{
+  "name": "SURGEgrapher",
+  "dependencies": {
+    "jQuery": "3.2.1"
+  }
+}
