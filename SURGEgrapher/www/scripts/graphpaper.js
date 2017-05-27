@@ -1,16 +1,15 @@
 ﻿$(document).ready(function () {
-    console.log("CHA");
+    
     $("#deviceready").click(function () {
         //can use this as a splash screen?
         $(".app").hide();
     });
 
-
     // for negatives on the font
     JXG.Options.ticks.useUnicodeMinus = false;
-    // Initial graph board set-up
-    //JXG.Options.board.renderer = 'canvas';
 
+    // Initial graph board set-up
+    //JXG.Options.board.renderer = 'canvas';  //keep as svg default
     board = JXG.JSXGraph.initBoard('box', {
 
         axis: { ticks: { drawLabels: true }, firstArrow: true, strokeColor: 'black' },
