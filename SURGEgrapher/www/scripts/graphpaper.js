@@ -1,4 +1,16 @@
 ﻿$(document).ready(function () {
+
+    $("#algebraPage").hide();
+    $("#algebraBtn").click(function () {
+        $("#algebraPage").show();
+        $("#box").hide();
+    });
+
+    $("#backGraph").click(function () {
+
+        $("#algebraPage").hide();
+        $("#box").show();
+    });
     
     $("#deviceready").click(function () {
         //can use this as a splash screen?
@@ -36,9 +48,9 @@
             needTwoFingers: false
         }
     });
-    board.resizeContainer($(window).width(), $(window).height());
+    board.resizeContainer( $(window).width(), $(window).height() );
 
-    board.create('functiongraph', [function (x) { return Math.sin(x); }], { strokeWidth: 2 })
+    board.create('functiongraph', [function (x) { return Math.sin(x); }], { strokeWidth: 2 });
 
     $(window).on('resize', function () {
         var bb = board.getBoundingBox();

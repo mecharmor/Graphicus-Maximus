@@ -5,24 +5,58 @@
         Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
         For details, see http://go.microsoft.com/fwlink/?LinkID=617521
     -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-        
+        <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+        -->
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/UiStyles.css">
+
         <title>SURGEgrapher</title>
     </head>
     <body>
-        <!-- Bootstrap Works! -->
-        <div class="panel">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                <input id="userInput" type="text" class="form-control" placeholder="Enter Function">
+        
+        <div id="algebraPage" w3-include-html="algebra.html"></div>
+
+        <!--Modal Button-->
+        <a class="btn btn-default MenuButton" data-target="#menuModal" data-toggle="modal"><span class="glyphicon glyphicon-th-list"></span></a>
+        <a id="algebraBtn" class="btn btn-default">alg</a>
+        <!-- Modal -->
+        <div class="modal fade" id="menuModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Function Menu</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!--Function Input-->
+                        
+                        <!--test-->
+                        <div w3-include-html="test.html"></div>
+                        
+                        <div class="panel">
+                            <div id="input-1" class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                <input id="userInput-1" type="text" class="form-control" placeholder="Enter Function">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
             </div>
         </div>
+
+
+
 
         <!-- jsxGraph container -->
         <div id="box" class="jxgbox" style="width:500px; height:500px"></div>
@@ -47,6 +81,14 @@
         <script type="text/javascript" src="scripts/graphpaper.js"></script>
         <script type="text/javascript" src="scripts/mathjs.js"></script>
         <script type="text/javascript" src="scripts/graphfunction.js"></script>
+
+        <!--w3-->
+        <script type="text/javascript" src="scripts/w3.js"></script>
+        <script>
+            w3.includeHTML();
+
+
+        </script>
 
     </body>
 </html>

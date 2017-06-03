@@ -1,0 +1,12 @@
+﻿.MenuButton {
+    position:absolute;
+    float:left;
+    bottom:50%;
+    z-index:999;
+
+}
+
+.modal-content {
+    background:rgba(255,255,255,0.8);
+}
+
