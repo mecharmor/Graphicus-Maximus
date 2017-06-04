@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿
+$(document).ready(function () {
 
     $("#algebraPage").hide();
     $("#algebraBtn").click(function () {
@@ -50,7 +51,7 @@
     });
     board.resizeContainer( $(window).width(), $(window).height() );
 
-    board.create('functiongraph', [function (x) { return Math.sin(x); }], { strokeWidth: 2 });
+    //board.create('functiongraph', [function (x) { return Math.sin(x); }], { strokeWidth: 2 });
 
     $(window).on('resize', function () {
         var bb = board.getBoundingBox();
