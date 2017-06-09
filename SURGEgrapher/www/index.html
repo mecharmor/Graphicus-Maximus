@@ -11,11 +11,14 @@
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <!--App Styles-->
         <link rel="stylesheet" type="text/css" href="css/index.css">
+        <!--Bootstrap CSS-->
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <!--Custom CSS-->
         <link rel="stylesheet" type="text/css" href="css/UiStyles.css">
 
-        <title>SURGEgrapher</title>
+        <title>SURGEgrapher | Main</title>
     </head>
     <body>
         
@@ -24,39 +27,9 @@
         <!--Modal Button-->
         <a class="btn btn-default MenuButton" data-target="#menuModal" data-toggle="modal"><span class="glyphicon glyphicon-th-list"></span></a>
         <a id="algebraBtn" class="btn btn-default">alg</a>
-        <!-- Modal -->
-        <div class="modal fade" id="menuModal" role="dialog">
-            <div class="modal-dialog">
 
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Function Menu</h4>
-                    </div>
-                    <div class="modal-body">
-                        <!--Function Input-->
-                        
-                        <!--test-->
-                        <div w3-include-html="test.html"></div>
-                        
-                        <div class="panel">
-                            <div id="input-1" class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                                <input id="userInput-1" type="text" class="form-control" placeholder="Enter Function">
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
+        <!--Including Modal-->
+        <div w3-include-html="PartialViews/FunctionModal.html"></div>
 
         <!-- jsxGraph container -->
         <div id="box" class="jxgbox" style="width:500px; height:500px"></div>
