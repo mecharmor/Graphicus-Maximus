@@ -1,23 +1,6 @@
 ﻿
 $(document).ready(function () {
 
-    $("#algebraPage").hide();
-    $("#algebraBtn").click(function () {
-        $("#algebraPage").show();
-        $("#box").hide();
-    });
-
-    $("#backGraph").click(function () {
-
-        $("#algebraPage").hide();
-        $("#box").show();
-    });
-    
-    $("#deviceready").click(function () {
-        //can use this as a splash screen?
-        $(".app").hide();
-    });
-
     // for negatives on the font
     JXG.Options.ticks.useUnicodeMinus = false;
 

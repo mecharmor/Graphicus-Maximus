@@ -5,7 +5,6 @@ $(document).ready(function () {
     //graphing functionality here
     var count = 0;
 
-
     $("body").keyup(function (e) {
         if (e.keyCode === 13) {
 
@@ -39,9 +38,9 @@ $(document).ready(function () {
     function appendInputField() {
         var inputField = "<div id='input-" + (count + 2) + "' class='input-group'>" +
             "<span class='input-group-addon' > <i class='glyphicon glyphicon-pencil'></i></span>" +
-                "  <input id='userInput-" + (count+2) + "' type='text' class='form- control' placeholder='Enter Function'>" +
+                "  <input id='userInput-" + (count+2) + "' type='text' class='form-control' placeholder='Enter Function'>" +
             " </div>";
-        $('#input-' + (count+1)).after(inputField);
+        $('#input-' + (count + 1)).after(inputField);
         count++;
     }
 

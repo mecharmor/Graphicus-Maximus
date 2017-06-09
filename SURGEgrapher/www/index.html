@@ -11,6 +11,7 @@
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        
         <!--App Styles-->
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <!--Bootstrap CSS-->
@@ -18,15 +19,26 @@
         <!--Custom CSS-->
         <link rel="stylesheet" type="text/css" href="css/UiStyles.css">
 
-        <title>SURGEgrapher | Main</title>
+        <title>SURGEgrapher</title>
+
     </head>
+
     <body>
         
+        <!--Include All Views-->
         <div id="algebraPage" w3-include-html="algebra.html"></div>
+        <div id="trigonometryPage" w3-include-html="trigonometry.html"></div>
+        <div id="calculusPage" w3-include-html="Calculus.html"></div>
 
-        <!--Modal Button-->
-        <a class="btn btn-default MenuButton" data-target="#menuModal" data-toggle="modal"><span class="glyphicon glyphicon-th-list"></span></a>
-        <a id="algebraBtn" class="btn btn-default">alg</a>
+        <!-- Vertical Button Group -->
+        <div class="btn-group-vertical MenuButton">
+            <a class="btn btn-primary" data-target="#menuModal" data-toggle="modal">f(x)</a>
+            <br />
+            <a id="homeBtn" class="btn btn-info"><span class="glyphicon glyphicon glyphicon-home"></span></a>
+            <a id="algebraBtn" class="btn btn-success">Alg</a>
+            <a id="trigonometryBtn" class="btn btn-warning">Trig</a>
+            <a id="calculusBtn" class="btn btn-danger">Calc</a>
+        </div>
 
         <!--Including Modal-->
         <div w3-include-html="PartialViews/FunctionModal.html"></div>
@@ -34,14 +46,16 @@
         <!-- jsxGraph container -->
         <div id="box" class="jxgbox" style="width:500px; height:500px"></div>
 
-        <!-- stuff below came with cordova app template-->
+        <!-- Cordova Load Screen-->
         <div class="app">
             <h1>SURGE Grapher</h1>
             <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+                <p class="event listening">Loading...</p>
+                <p class="event received">Click Me To Start</p>
             </div>
         </div>
+
+        <!-- Cordova Scripts -->
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="scripts/platformOverrides.js"></script>
         <script type="text/javascript" src="scripts/index.js"></script>
@@ -50,18 +64,18 @@
         <script type="text/javascript" src="scripts/jquery.min.js"></script>
         <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
         <script type="text/javascript" src="scripts/jsxgraphcore.js"></script>
-
-        <script type="text/javascript" src="scripts/graphpaper.js"></script>
         <script type="text/javascript" src="scripts/mathjs.js"></script>
-        <script type="text/javascript" src="scripts/graphfunction.js"></script>
+
+        <!-- Custom Scripts (New Scripts Go Here)-->
+        <script type="text/javascript" src="scripts/CustomScripts/graphfunction.js"></script>
+        <script type="text/javascript" src="scripts/CustomScripts/PageEvents.js"></script>
+
+        <!--Graph Board Script-->
+        <script type="text/javascript" src="scripts/CustomScripts/graphpaper.js"></script>
 
         <!--w3-->
         <script type="text/javascript" src="scripts/w3.js"></script>
-        <script>
-            w3.includeHTML();
-
-
-        </script>
+        <script>w3.includeHTML();</script>
 
     </body>
 </html>
