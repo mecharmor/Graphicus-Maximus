@@ -21,8 +21,6 @@
        
         <title>SURGEgrapher</title>
 
-
-
     </head>
 
     <body>
@@ -36,17 +34,18 @@
         <div class="btn-group-vertical MenuButton">
             <a class="btn btn-primary" data-target="#menuModal" data-toggle="modal">f(x)</a>
             <br />
+            <!--
             <a id="homeBtn" class="btn btn-info"><span class="glyphicon glyphicon glyphicon-home"></span></a>
             <a id="algebraBtn" class="btn btn-success">Alg</a>
             <a id="trigonometryBtn" class="btn btn-warning">Trig</a>
             <a id="calculusBtn" class="btn btn-danger">Calc</a>
+                -->
         </div>
 
         <!--Including Modal-->
-        <!-- Modal -->
+        <!-- Function Input Modal-->
         <div class="modal fade" id="menuModal" role="dialog">
             <div class="modal-dialog">
-
                 <!-- Modal content-->
                 <div class="modal-content">
                     
@@ -69,20 +68,21 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="modal-body">
 
                         <!--Function Input-->
-                        <div class="panel">
+                        <div class="container">
                             <div id="input-1" class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
                                 <input id="userInput" type="text" class="form-control" placeholder="Enter Function">
                             </div>
-                            <div id="function-list">
-
-                            </div>
-
+                            <br/>
+                            <div id="function-list"></div>
                         </div>
+
                     </div>
+
                     <div class="modal-footer">
                         <!--<button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> Close</button>-->
                     </div>
