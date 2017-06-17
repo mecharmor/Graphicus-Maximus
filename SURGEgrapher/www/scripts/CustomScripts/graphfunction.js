@@ -5,29 +5,14 @@ var count = 0;
 
 $(document).ready(function () {
     
-
     $("#userInput").keyup(function (e) {
         
         if (e.keyCode === 13) {
-
-            //var userText = $("#" + e.target.id).val(); // Gets the id of the main text box
-            //addFunction(userText);
-            // Deletes the value from the main text box
-            //$("#" + e.target.id).val("");
-
             //Mr. Redden's attempt to streamline this
             var userText = $(this).val();
             graphFunction(userText);
            
         }
- 
-        $('button[name="delete"]').one('click',function (e) {
-            console.log("delete button clicked")
-            var index = e.currentTarget.value;
-            var funcObj = functions[index];
-            deleteFunctionList(funcObj);
-        });
-
     });
 
   
@@ -44,37 +29,35 @@ function graphFunction(asciiMath) {
     var userjsxgraph = board.create('functiongraph', [userFunction], { strokeWidth: 2 });
 
     var funcObj = {
-        "graph": userjsxgraph,
-        "text": asciiMath.toLowerCase()
-    }
+        graph: userjsxgraph,
+        text: asciiMath.toLowerCase()
+    };
     // add this graph to the end of the global functions array
-    var len = functions.push(funcObj);
+    functions.push(funcObj);
     //add this to the end of the function list
-    appendFunctionList(functions[len-1]);
-
+    remakeFunctionList();
+    $("#userInput").val("");
 }
 function appendFunctionList(funcJson) {
     var index = functions.indexOf(funcJson);
     var inputField = 
-        "<div class='input-group' >" +
+        $("<div class='input-group' >" +
         "<div class='input-group-btn'>" +
-        "<button name='edit' class='btn btn-default'><i class='glyphicon glyphicon-pencil'></i></button>" +
+        "<button name='edit' value='"+index+"' class='btn btn-default'><i class='glyphicon glyphicon-pencil'></i></button>" +
         "<button name='delete' value='"+index+"' class='btn btn-default'><i class='glyphicon glyphicon-trash'></i></button>" +
         "</div>" +
-        "<div>"+funcJson.text+"</div>" +
-        "</div>";
+        "<div class='katex-text'>"+funcJson.text+"</div>" +
+        "</div>");
     $('#function-list').append(inputField);
-
+    katex.render(funcJson.text, inputField.find(".katex-text")[0]);
 }
 
 function deleteFunctionList(funcJson) {
-    
     board.removeObject(funcJson.graph);
     //delete and shift functions array
     functions.splice(functions.indexOf(funcJson), 1);
     
     remakeFunctionList();
-
 }
 
 function remakeFunctionList() {
@@ -82,19 +65,27 @@ function remakeFunctionList() {
     for (var i= 0; i < functions.length; i++){
         appendFunctionList(functions[i]);
     }
+    $("button[name='edit']").one("click", function (args) {
+        // Variables
+        var index = args.currentTarget.value;
+        var funcObj = functions[index];
+
+        $("#userInput").val(funcObj.text);
+        deleteFunctionList(funcObj);
+        $("#userInput").focus();
+    });
     $('button[name="delete"]').one('click', function (e) {
-        console.log("delete button clicked")
         var index = e.currentTarget.value;
         var funcObj = functions[index];
+
         deleteFunctionList(funcObj);
     });
-
 }
 
 //Mr. Redden's attempt to streamline this *****************************
 
 
-
+/*
 function appendInputField() {
     // Comes out disabled so that you must press the edit button. I added a index attribute to input-(index) for easy pickings
     var inputField = "<div id='input-" + count + "' class='input-group' index='" + count + "'>" +
@@ -164,4 +155,4 @@ function editFunc(index) {
         graph: graph,
         text: userText
     };
-}
+}*/
