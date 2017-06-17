@@ -35,7 +35,13 @@
         <div class="btn-group-vertical MenuButton">
             <a class="btn btn-primary" data-target="#menuModal" data-toggle="modal">f(x)</a>
             <br />
-            <button id="NavButton" class="btn btn-success"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
+
+            <!--Draggable Menu-->
+            <div id="dragMenu" class="btn btn-danger">
+                <span class="glyphicon glyphicon-menu-hamburger menuItems"></span>
+                <button id="menuItem1" class="btn btn-default menuItems"> Alg Page</button>
+            </div>
+
             <!--
             <a id="homeBtn" class="btn btn-info"><span class="glyphicon glyphicon glyphicon-home"></span></a>
             <a id="algebraBtn" class="btn btn-success">Alg</a>
@@ -115,6 +121,8 @@
         <script type="text/javascript" src="scripts/jsxgraphcore.js"></script>
         <script type="text/javascript" src="scripts/mathjs.js"></script>
         <script type="text/javascript" src="katex/katex.min.js"></script>
+        <!--jquery UI-->
+        <script type="text/javascript" src="./scripts/JqueryUi.js"></script>
 
         <!-- Custom Scripts (New Scripts Go Here)-->
         <!--Graph Board Script-->

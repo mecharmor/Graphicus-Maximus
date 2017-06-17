@@ -14,9 +14,20 @@
     text-align:center;
 }
 
-#NavButton {
+#dragMenu {
+    border-radius: 50%;
+    height:3em;
+    width:3em;
+}
+.menuItems {
+    position: absolute;
+    line-height:3em;
+    text-align:center;
+}
 
-border-radius:50%;
-
+#menuItem1 {
+    top: 0.5em;
+    left: 0.5em;
+    transition: opacity 1s, z-index 0.3s, transform 1s;
 }
 

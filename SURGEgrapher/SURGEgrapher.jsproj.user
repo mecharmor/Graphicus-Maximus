@@ -6,5 +6,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <ShowAllFiles>false</ShowAllFiles>
+    <ReferenceCachePath>C:\Users\Cory\AppData\Local\Temp\SURGEgrapher_refcache</ReferenceCachePath>
   </PropertyGroup>
 </Project>
