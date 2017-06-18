@@ -80,20 +80,77 @@
     //Draggable Menu Set
     let menu = $("#dragMenu");
     let menuItem1 = $("#menuItem1");
+    let menuItem2 = $("#menuItem2");
+    let menuItem3 = $("#menuItem3");
+    let menuItem4 = $("#menuItem4");
+    let menuItem5 = $("#menuItem5");
+    let menuItem6 = $("#menuItem6");
+    let menuItem7 = $("#menuItem7");
+    let menuItem8 = $("#menuItem8");
+    let menuItems = [
+        menuItem1,
+        menuItem2,
+        menuItem3,
+        menuItem4,
+        menuItem5,
+        menuItem6,
+        menuItem7,
+        menuItem8
+    ];
     let _toggle = true;
     menu.draggable({ containment: "body" });
-    menuItem1.hide();
+    //menuItem1.hide();
 
     menu.click(function () {
 
+        // Shows the menu
         if (_toggle) {
-
-            menuItem1.css("transform", "translate(0,5em)").slideDown(100);
+            let top = 0;
+            let left = 0;
+            for (let i = 0; i < menuItems.length; i++) {
+                switch (i) {
+                    case 0: // Alg button
+                        top = -5;
+                        break;
+                    case 1: // Trig button
+                        top = -2.5;
+                        left = -4;
+                        break;
+                    case 2: // Calc button
+                        top = -2.5;
+                        left = 4;
+                        break;
+                    case 3: // Calc button
+                        top = 2.5;
+                        left = 4;
+                        break;
+                    case 4: // Calc button
+                        top = 5;
+                        break;
+                    case 5: // Calc button
+                        top = 2.5;
+                        left = -4;
+                        break;
+                }
+                menuItems[i]
+                    .css("top", top + "em")
+                    .css("left", left+"em")
+                    .css("transform", "rotate(360deg)")
+                    .css("opacity", "1");
+                top = 0;
+                left = 0;
+            }
             _toggle = false;
 
         } else {
+            for (let i = 0; i < menuItems.length; i++) {
+                menuItems[i]
+                    .css("top", "0px")
+                    .css("left", "0px")
+                    .css("transform", "rotate(0deg)")
+                    .css("opacity", "0");
+            }
 
-            menuItem1.css("transform", "translate(0,5em)").slideUp(100);
             _toggle = true;
         }
 
