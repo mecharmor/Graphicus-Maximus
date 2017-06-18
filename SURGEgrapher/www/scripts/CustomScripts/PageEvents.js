@@ -59,6 +59,28 @@
     let menu = $("#dragMenu");
     let menuItems = [];
     let _toggle = true;
+    const m = menu.find("*");
+    const mc=   [];
+
+    for (let i = 0; i < m.length; i++)	{
+        console.log(m[i]);
+        mc[i] = new Hammer(m[i]);
+        mc[i].on("pan", temp_pan);
+    }
+	
+    function temp_pan(args) {
+        console.log(args);
+        if (!args.center) {
+            console.log("fl");
+            return;
+        }
+        if (args.center.x == 0 && args.center.y == 0) {
+
+            console.log("fl");
+            return;
+        }
+        menu.css("left", (args.center.x - 32) + "px").css("top", (args.center.y - 32) + "px");
+    }
 
     for (let i = 1; i <= 6; i++) {
         menuItems[i - 1] = $("#menuItem" + i);
@@ -67,8 +89,7 @@
             IntView(i-1);
         });
     }
-    menu.draggable({ containment: "body" });
-    //menuItem1.hide();
+    $("#dragMenuGlyphicon2").hide();
 
     menu.click(function () {
         // Shows the menu
@@ -115,6 +136,11 @@
                 top = 0;
                 left = 0;
             } // End of for loop
+            menu.css("transform", "rotate(360deg)");
+            $("#dragMenuGlyphicon").fadeOut(500);
+            setTimeout(function () {
+                $("#dragMenuGlyphicon2").fadeIn(250);
+            }, 250);
             _toggle = false;
 
         } else {
@@ -125,7 +151,11 @@
                     .css("transform", "rotate(0deg)")
                     .css("opacity", "0");
             }
-
+            menu.css("transform", "rotate(0deg)");
+            $("#dragMenuGlyphicon2").fadeOut(500);
+            setTimeout(function () {
+                $("#dragMenuGlyphicon").fadeIn(500);
+            }, 250);
             _toggle = true;
         }
 
