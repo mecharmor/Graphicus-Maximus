@@ -1,6 +1,5 @@
 ﻿$(document).ready(function () {
 
-    //Global Variables
     //Algebra Div
     var algebraDivId = $("#algebraPage");
     //Trigonometry Div
@@ -9,75 +8,49 @@
     var calculusDivId = $("#calculusPage");
     //Graph Div
     var graphDivId = $("#box");
+    //Settings
+    var settingsDivId = $("#settingsPage");
 
     //Start at Index View
-    IntView(0);
+    IntView(1);
 
     $("#deviceready").click(function () {
         //can use this as a splash screen?
         $(".app").hide();
     });
 
-
-    //Button Menu
-    //inner Menu Buttons
-    var btnHome = $("#btnHome");
-    var btnAlgebra = $("#btnAlgebra");
-    var btnTrig = $("#btnTrig");
-    var btnCalc = $("#btnCalc");
-    var btnFunc = $("#btnFunc");
-
-
-    //Home Button Clicked
-    btnHome.click(function () {
-        IntView(0);
-    });
-    //Algebra Button Clicked
-    btnAlgebra.click(function () {
-        IntView(1);
-    });
-    //Trig Button Clicked
-    btnTrig.click(function () {
-        IntView(2);
-    });
-    //Calc Button Clicked
-    btnCalc.click(function () {
-        IntView(3);
-    });
-
-    //index = 0, algebra = 1, trigonometry = 2, calculus = 3, etc...
+    //index = 1, algebra = 2, trigonometry = 3, calculus = 4, etc...
     function IntView(x) {
 
+        algebraDivId.hide();
+        trigonometryDivId.hide();
+        calculusDivId.hide();
+        settingsDivId.hide();
+        graphDivId.hide();
+
         switch (x) {
-            //Index
+
+            //Function Button Pressed
             case 0:
-                algebraDivId.hide();
-                trigonometryDivId.hide();
-                calculusDivId.hide();
-                //Show Graph Here
+            //Home or Index 
+            case 1:
                 graphDivId.show();
                 break;
-            //Algebra
-            case 1:
-                algebraDivId.show();
-                trigonometryDivId.hide();
-                calculusDivId.hide();
-                graphDivId.hide();
-
-                break;
-            //Trigonometry
+            //Settings
             case 2:
-                algebraDivId.hide();
-                trigonometryDivId.show();
-                calculusDivId.hide();
-                graphDivId.hide();
+                settingsDivId.show();
                 break;
             //Calculus
             case 3:
-                algebraDivId.hide();
-                trigonometryDivId.hide();
                 calculusDivId.show();
-                graphDivId.hide();
+                break;
+            //Trigonometry
+            case 4:
+                trigonometryDivId.show();
+                break;
+            //Algebra
+            case 5:
+                algebraDivId.show();
                 break;
         }
     }
@@ -88,9 +61,13 @@
     let _toggle = true;
 
     for (let i = 1; i <= 6; i++) {
-        menuItems[q-1]= $("#menuItem" + i);
+        menuItems[i - 1] = $("#menuItem" + i);
+        //Home Button Clicked
+        menuItems[i-1].click(function () {
+            IntView(i-1);
+        });
     }
-    menu.draggable({ containment: "#box" });
+    menu.draggable({ containment: "body" });
     //menuItem1.hide();
 
     menu.click(function () {
@@ -160,4 +137,5 @@
 //Function Button Clicked
 function boxBlur(x) {
     $("#box").css("filter", "blur(" + x + "px)");
+    $("#dragMenu").css("filter", "blur(" + x + "px)");
 };

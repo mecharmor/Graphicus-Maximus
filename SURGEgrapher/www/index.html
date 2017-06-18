@@ -39,7 +39,7 @@
             <!--Draggable Menu-->
             <div id="dragMenu">
                 <span id="dragMenuGlyphicon" class="glyphicon glyphicon-menu-hamburger"></span>
-                <span id="menuItem1" class="btn btn-default menuItems">f(x)</span>
+                <span id="menuItem1" class="btn btn-default menuItems" data-target="#menuModal" data-toggle="modal" onclick="boxBlur(5)">f(x)</span>
                 <span id="menuItem2" class="btn btn-default menuItems"><span class="glyphicon glyphicon-home"></span></span>
                 <span id="menuItem3" class="btn btn-default menuItems"><span class="glyphicon glyphicon-wrench"></span></span>
                 <span id="menuItem4" class="btn btn-default menuItems">Calc</span>
@@ -60,13 +60,13 @@
 
         <!--Including Modal-->
         <!-- Function Input Modal-->
-        <div class="modal fade" id="menuModal" role="dialog">
+        <div class="modal fade" id="menuModal" role="dialog" data-backdrop="static">
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
                     
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <button type="button" class="close" data-dismiss="modal" onclick="boxBlur(0)">&times;</button>
                         <div class="btn-group" role="toolbar" aria-label="Toolbar with button groups">
                            
                         </div>
