@@ -30,31 +30,41 @@
         <div id="algebraPage" w3-include-html="algebra.html"></div>
         <div id="trigonometryPage" w3-include-html="trigonometry.html"></div>
         <div id="calculusPage" w3-include-html="calculus.html"></div>
+
+        <!-- Vertical Button Group -->
+        <div class="btn-group-vertical MenuButton">
+            <!--<a class="btn btn-primary" data-target="#menuModal" data-toggle="modal">f(x)</a>-->
             <br />
+
             <!--Draggable Menu-->
-            <div id="dragMenu" class="MenuButton">
-                <span id="dragMenuGlyphicon" class="glyphicon glyphicon-menu-hamburger"></span>
-                <span id="dragMenuGlyphicon2" class="glyphicon glyphicon-remove"></span>
-                <span id="menuItem1" class="btn btn-default menuItems" data-target="#menuModal" data-toggle="modal" onclick="boxBlur(5)">f(x)</span>
-                <span id="menuItem2" class="btn btn-default menuItems"><span class="glyphicon glyphicon-home"></span></span>
-                <span id="menuItem3" class="btn btn-default menuItems"><span class="glyphicon glyphicon-wrench"></span></span>
-                <span id="menuItem4" class="btn btn-default menuItems">Calc</span>
-                <span id="menuItem5" class="btn btn-default menuItems">Trig</span>
-                <span id="menuItem6" class="btn btn-default menuItems">Alg</span>
+            <div id="dragMenu">
+                <span class="glyphicon glyphicon-menu-hamburger menuGlyphicon"></span>
+                <button id="btnAlgebra" class="btn btn-success menuItems">Alg</button>
+                <button id="btnHome" class="btn btn-info menuItems"><span class="glyphicon glyphicon-home"></span></button>
+                <button id="btnTrig" class="btn btn-warning menuItems">Trig</button>
+                <button id="btnCalc" class="btn btn-danger menuItems">Calc</button>
+                <button id="btnFunc" class="btn btn-default menuItems" data-target="#menuModal" data-toggle="modal" onclick="boxBlur(5)">f(x)</button>
+                <button id="btnSettings" class="btn btn-info menuItems"><span class="glyphicon glyphicon-cog"></span></button>
             </div>
+
+        </div>
 
         <!--Including Modal-->
         <!-- Function Input Modal-->
-        <div class="modal fade" id="menuModal" role="dialog" data-backdrop="static">
+        <div class="modal fade" id="menuModal" role="dialog">
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
+                    
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" onclick="boxBlur(0)">&times;</button>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <div class="btn-group" role="toolbar" aria-label="Toolbar with button groups">
+                           
                         </div>
-                    </div>                 
+                    </div>
+                    
                     <div class="modal-body">
+
                         <!--Function Input-->
                         <div class="container">
                             <div id="input-1" class="input-group">
@@ -64,7 +74,9 @@
                             <br/>
                             <div id="function-list"></div>
                         </div>
+
                     </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="boxBlur(0)"><span class="glyphicon glyphicon-remove-circle"></span> Close</button>
                     </div>
@@ -97,7 +109,6 @@
         <script type="text/javascript" src="katex/katex.min.js"></script>
         <!--jquery UI-->
         <script type="text/javascript" src="./scripts/JqueryUi.js"></script>
-        <script type="text/javascript" src="./scripts/hammer.js"></script>
 
         <!-- Custom Scripts (New Scripts Go Here)-->
         <!--Graph Board Script-->
