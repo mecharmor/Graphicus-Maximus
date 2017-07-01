@@ -43,10 +43,10 @@ function appendFunctionList(funcJson) {
     var inputField = 
         $("<div class='input-group' >" +
         "<div class='input-group-btn'>" +
-        "<button name='edit' value='"+index+"' class='btn btn-default'><i class='glyphicon glyphicon-pencil'></i></button>" +
-        "<button name='delete' value='"+index+"' class='btn btn-default'><i class='glyphicon glyphicon-trash'></i></button>" +
+            "<button name='edit' value='" + index + "' class='btn btn-info'><i class='glyphicon glyphicon-console'></i></button>" +
+            "<button class='btn btn-default disabled katex-text'>" + funcJson.text + "</button>" +
+            "<button name='delete' value='"+index+"' class='btn btn-danger'><i class='glyphicon glyphicon-trash'></i></button>" +
         "</div>" +
-        "<div class='katex-text'>"+funcJson.text+"</div>" +
         "</div>");
     $('#function-list').append(inputField);
     katex.render(funcJson.text, inputField.find(".katex-text")[0]);
