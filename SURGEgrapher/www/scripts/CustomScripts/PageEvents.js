@@ -170,6 +170,27 @@
         }
     }
 
+    //Move Menu Element
+    $(function () {
+        var offset = menu.offset();
+        //padding on top or bottom when focusing
+        var topPadding = 15;
+        //when scrolling
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > offset.top) {
+                menu.stop().animate({
+                    marginTop: $(window).scrollTop() - offset.top + topPadding
+                });
+            } else {
+                menu.stop().animate({
+                    marginTop: 0
+                });
+            };
+        });
+    });
+
+ 
+
 });//document.ready
 
 //Function Button Clicked
