@@ -1,10 +1,10 @@
 ﻿<!DOCTYPE html>
 <html>
     <head>
-    <!--
+        <!--
         Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
         For details, see http://go.microsoft.com/fwlink/?LinkID=617521
-    -->
+        -->
         <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
         -->
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -13,10 +13,13 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         
         <!--App Styles-->
-       <!---- <link rel="stylesheet" type="text/css" href="css/index.css"> -->
-        <!--Bootstrap CSS-->
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <!--Bootstrap css-->
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <!--Custom CSS-->
+        <!--Jquery Mobile css-->
+        <link rel="stylesheet" type="text/css" href="css/jqueryMobile.structure.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/jqueryMobile.theme.min.css" />
+        <!--Custom css-->
         <link rel="stylesheet" type="text/css" href="css/UiStyles.css">
         <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
        
@@ -75,14 +78,14 @@
         <!-- jsxGraph container -->
         <div id="box" class="jxgbox" style="width:500px; height:500px"></div>
 
-        <!-- Cordova Load Screen
+        <!-- Cordova Load Screen-->
         <div class="app">
-            <h1>SURGE Grapher</h1>
+            <h2>Graphicus Maximus</h2>
             <div id="deviceready" class="blink">
-                <p class="event listening">Loading...</p>
-                <p class="event received">Click Me To Start</p>
+                <p class="event listening">Loading</p>
+                <p class="event received" onclick="boxBlur(0)">Tap Me To Begin</p>
             </div>
-        </div>-->
+        </div>
 
         <!-- Cordova Scripts -->
         <script type="text/javascript" src="cordova.js"></script>
@@ -95,8 +98,10 @@
         <script type="text/javascript" src="scripts/jsxgraphcore.js"></script>
         <script type="text/javascript" src="scripts/mathjs.js"></script>
         <script type="text/javascript" src="katex/katex.min.js"></script>
-        <!--jquery UI-->
+        <!--Hammer.js (For Touch Gestures [delete this soon]) -->
         <script type="text/javascript" src="./scripts/hammer.js"></script>
+        <!--Jquery Mobile (For Touch Gestures & mobile sliders)-->
+        <script type="text/javascript" src="scripts/jqueryMobile.min.js"></script>
 
         <!-- Custom Scripts (New Scripts Go Here)-->
         <script type="text/javascript" src="scripts/CustomScripts/graphpaper.js"></script>
