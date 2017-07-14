@@ -19,12 +19,14 @@
         $(".app").hide();
     });
 
-    //Draggable Menu Set
+    //Drag Menu Set
     let menu = $("#dragMenu");
     let menuItems = [];
     let _toggle = true;
     const m = menu.find("*");
     const mc=   [];
+
+    /*Hammer JS might need to be deleted once we get Jquery Mobile moving the menu button properly*/
 
     //Move menu when pan gesture is triggered
     for (let i = 0; i < m.length; i++)	{
