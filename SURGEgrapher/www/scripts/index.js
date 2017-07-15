@@ -18,7 +18,6 @@
         var receivedElement = parentElement.querySelector('.received');
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
-        boxBlur(5);
     };
 
     function onPause() {

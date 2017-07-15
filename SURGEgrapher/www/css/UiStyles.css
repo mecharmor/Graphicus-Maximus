@@ -58,3 +58,8 @@
 .well {
     background-color: #fff7ea;
 }
+
+#box, #dragMenu {
+    
+    filter:blur(5px);
+}
