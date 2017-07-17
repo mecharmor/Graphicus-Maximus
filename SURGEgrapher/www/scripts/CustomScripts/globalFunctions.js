@@ -12,4 +12,16 @@ function backButton() {
     $("#box").show();
     //Settings
     $("#settingsPage").hide();
+
+    //Fixes back button glitch
+    $('body').scrollTop(0);
+
+
 }
+
+//Keep menu in focus while scrolling
+$().ready(function () {
+    $(window).scroll(function () {
+        $("#dragMenu").stop().animate({ "marginTop": ($(window).scrollTop()) }, "fast");
+    });
+});
