@@ -1,4 +1,11 @@
 ﻿var functions = [];
+var colors = [
+    "blue",
+    "red",
+    "green",
+    "purple",
+    "black"
+];
 // This is used for editting a selected function.
 var currIndex = -1;
 var count = 0;
@@ -26,10 +33,12 @@ function graphFunction(asciiMath) {
     //change user string to javascript math inside a function (javascript magic!)
     var userTextjs = mathjs(asciiMath.toLowerCase(), 'x');
     var userFunction = function (x) { with (Math) return eval(userTextjs); };
-    var userjsxgraph = board.create('functiongraph', [userFunction], { strokeWidth: 2 });
+    var colorID = Math.trunc(Math.random() * colors.length);
+    var userjsxgraph = board.create('functiongraph', [userFunction], { strokeWidth: 2, strokeColor: colors[colorID] });
 
     var funcObj = {
         graph: userjsxgraph,
+        colorID: colorID,
         text: asciiMath.toLowerCase()
     };
     // add this graph to the end of the global functions array
@@ -44,10 +53,24 @@ function appendFunctionList(funcJson) {
         $("<div class='input-group' >" +
         "<div class='input-group-btn'>" +
             "<button name='edit' value='" + index + "' class='btn btn-info'><i class='glyphicon glyphicon-console'></i></button>" +
-            "<button class='btn btn-default disabled katex-text'>" + funcJson.text + "</button>" +
+            "<button class='btn btn-default disabled katex-text' style='color:"+colors[functions[index].colorID]+";'>" + funcJson.text + "</button>" +
             "<button name='delete' value='"+index+"' class='btn btn-danger'><i class='glyphicon glyphicon-trash'></i></button>" +
         "</div>" +
         "</div>");
+
+    inputField.find(".katex-text").on("click", function (args) {
+        // Variables
+        var newColorID = (functions[index].colorID + 1) % colors.length;
+
+        // Switches the color on the graph
+        functions[index].graph.setAttribute({
+            strokeColor: colors[newColorID]
+        });
+        // Switches the color on the dom
+        args.target.style.color = colors[newColorID];
+
+        functions[index].colorID = newColorID;
+    });
     $('#function-list').append(inputField);
     katex.render(funcJson.text, inputField.find(".katex-text")[0]);
 }

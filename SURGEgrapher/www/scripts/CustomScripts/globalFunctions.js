@@ -24,4 +24,10 @@ $().ready(function () {
     $(window).scroll(function () {
         $("#dragMenu").stop().animate({ "marginTop": ($(window).scrollTop()) }, "fast");
     });
+
+    setTimeout(function() {
+        $(".btn-info").each(function (index, elem) {
+            katex.render(elem.innerHTML, elem);
+        });
+    }, 500);
 });
