@@ -14,6 +14,14 @@
     //Start at Index View
     IntView(1);
 
+    setTimeout(function () {
+        $("#resetZoom").click(function () {
+            console.log("JASFME");
+            board.zoom100();
+            IntView(1);
+        });
+    }, 100);
+
     $("#deviceready").click(function () {
         //can use this as a splash screen?
         $(".app").hide();
@@ -55,8 +63,10 @@
     for (let i = 1; i <= 6; i++) {
         menuItems[i - 1] = $("#menuItem" + i);
         //Home Button Clicked
-        menuItems[i-1].click(function () {
-            IntView(i-1);
+        menuItems[i - 1].click(function () {
+            if (!_toggle)
+                IntView(i - 1);
+            //else   console.log(":asdasfasf");
         });
     }
 
@@ -65,13 +75,13 @@
 
     menu.bind("tap", function () {
 
-        alert("slerp derp");
-
+        //alert("slerp derp");
+    /*
     });
 
     //Modify css to shift outward/inward
     menu.click(function () {
-        // Shows the menu
+      */  // Shows the menu
         if (_toggle) {
             let top = 0;
             let left = 0;
@@ -120,9 +130,9 @@
             $("#dragMenuGlyphicon").fadeOut(500);
             setTimeout(function () {
                 $("#dragMenuGlyphicon2").fadeIn(250);
+                _toggle = false;
             }, 250);
-            _toggle = false;
-
+            
         } else {
             for (let i = 0; i < menuItems.length; i++) {
                 menuItems[i]
@@ -136,8 +146,8 @@
             $("#dragMenuGlyphicon2").fadeOut(500);
             setTimeout(function () {
                 $("#dragMenuGlyphicon").fadeIn(500);
+                _toggle = true;
             }, 250);
-            _toggle = true;
         }
 
     });

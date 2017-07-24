@@ -17,9 +17,23 @@ $(document).ready(function () {
         if (e.keyCode === 13) {
             //Mr. Redden's attempt to streamline this
             var userText = $(this).val();
+
+            if (userText == "")
+                return;
+
             graphFunction(userText);
            
         }
+    });
+
+    $("#graphInput").click(function () {
+        // Variables
+        var userText = $("#userInput").val();
+
+        if (userText == "")
+            return;
+
+        graphFunction(userText);
     });
 
   
