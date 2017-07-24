@@ -30,7 +30,7 @@
 
     //Move menu when pan gesture is triggered
     for (let i = 0; i < m.length; i++)	{
-        console.log(m[i]);
+        //console.log(m[i]);
         mc[i] = new Hammer(m[i]);
         //on pan, call function to move
         mc[i].on("pan", temp_pan);
@@ -38,15 +38,15 @@
 
     //Troubleshooting Panning
     function temp_pan(args) {
-        console.log(args);
+        //console.log(args);
         if (!args.center) {
-            console.log("fl");
+           // console.log("fl");
             return;
         }
         //Prevent button from snapping to the top corner of window
         if (args.center.x == 0 && args.center.y == 0) {
 
-            console.log("fl");
+            //console.log("fl");
             return;
         }
         menu.css("left", (args.center.x - 32) + "px").css("top", (args.center.y - 32) + "px");
@@ -62,6 +62,12 @@
 
     //hide menu glyphicon 'x'
     $("#dragMenuGlyphicon2").hide();
+
+    menu.bind("tap", function () {
+
+        alert("slerp derp");
+
+    });
 
     //Modify css to shift outward/inward
     menu.click(function () {
