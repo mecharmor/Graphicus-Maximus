@@ -30,7 +30,7 @@
         <div id="settingsPage" w3-include-html="settings.html"></div>
         <div id="algebraPage" w3-include-html="algebra.html"></div>
         <div id="trigonometryPage" w3-include-html="trigonometry.html"></div>
-        <div id="calculusPage" w3-include-html="calculus.html"></div>
+        <div id="calculusPage" w3-include-html="Calculus.html"></div>
             <br />
             <!--Draggable Menu-->
             <div id="dragMenu" class="MenuButton">
@@ -38,10 +38,9 @@
                 <span id="dragMenuGlyphicon2" class="glyphicon glyphicon-remove"></span>
                 <span id="menuItem1" class="btn btn-default menuItems" data-target="#menuModal" data-toggle="modal" onclick="boxBlur(5)">f(x)</span>
                 <span id="menuItem2" class="btn btn-default menuItems"><span class="glyphicon glyphicon-home"></span></span>
-                <span id="menuItem3" class="btn btn-default menuItems"><span class="glyphicon glyphicon-wrench"></span></span>
-                <span id="menuItem4" class="btn btn-default menuItems">Calc</span>
-                <span id="menuItem5" class="btn btn-default menuItems">Trig</span>
-                <span id="menuItem6" class="btn btn-default menuItems">Alg</span>
+                <span id="menuItem3" class="btn btn-default menuItems">Calc</span>
+                <span id="menuItem4" class="btn btn-default menuItems">Trig</span>
+                <span id="menuItem5" class="btn btn-default menuItems">Alg</span>
             </div>
 
 
@@ -69,6 +68,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <!-- TODO: Find out what to do with this page??? -->
+                        <span id="resetZoom" class="btn btn-primary" style="width:100%;">
+                            Reset Zoom
+                        </span>
                         <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="boxBlur(0)"><span class="glyphicon glyphicon-remove-circle"></span> Close</button>
                     </div>
                 </div>
@@ -93,10 +96,10 @@
         <script type="text/javascript" src="scripts/index.js"></script>
 
         <!-- SURGE included libraries -->
-        <!--<script type="text/javascript" src="scripts/jquery.min.js"></script>-->
-        <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        <script type="text/javascript" src="scripts/jquery.min.js"></script>
+        <!--<script src="https://code.jquery.com/jquery-2.2.4.min.js"
                 integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-                crossorigin="anonymous"></script>
+                crossorigin="anonymous"></script>-->
         <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
         <script type="text/javascript" src="scripts/jsxgraphcore.js"></script>
         <script type="text/javascript" src="scripts/mathjs.js"></script>
@@ -107,6 +110,10 @@
 
         <!--Hammer.js (For Touch Gestures [delete this soon]) -->
         <script type="text/javascript" src="./scripts/hammer.js"></script>
+
+        <!-- jqMath -->
+        <script type="text/javascript" src="scripts/jscurry-0.4.5.min.js"></script>
+        <script type="text/javascript" src="scripts/jqmath-etc-0.4.6.min.js"></script>
 
         <!--w3-->
         <script type="text/javascript" src="scripts/w3.js"></script>

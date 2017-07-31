@@ -53,7 +53,8 @@ function graphFunction(asciiMath) {
     var funcObj = {
         graph: userjsxgraph,
         colorID: colorID,
-        text: asciiMath.toLowerCase()
+        text: asciiMath.toLowerCase(),
+        latex:  txt2tex(asciiMath.toLowerCase())
     };
     // add this graph to the end of the global functions array
     functions.push(funcObj);
@@ -86,16 +87,28 @@ function appendFunctionList(funcJson) {
         functions[index].colorID = newColorID;
     });
     $('#function-list').append(inputField);
-    katex.render(funcJson.text, inputField.find(".katex-text")[0]);
+    try {
+        katex.render(funcJson.latex, inputField.find(".katex-text")[0]);
+    } catch (e) { console.log(e);}
 }
 
 function deleteFunctionList(funcJson) {
     board.removeObject(funcJson.graph);
     //delete and shift functions array
     functions.splice(functions.indexOf(funcJson), 1);
-    
+
+    if (functions.length === 0) {
+        board.zoom100();
+        centerOrigin();
+    }
+
     remakeFunctionList();
 }
+
+// Centers the origin
+function centerOrigin() {
+    board.moveOrigin($(window).width() / 2.0, $(window).height() / 2.0);
+};
 
 function remakeFunctionList() {
     $('#function-list').html("");
