@@ -34,6 +34,8 @@ $(document).ready(function () {
             return;
 
         graphFunction(userText);
+        $("#menuModal").modal("hide");
+        boxBlur(0);
     });
 
   
