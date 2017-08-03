@@ -48,16 +48,22 @@ function graphFunction(asciiMath) {
         return;
 	
 	try	{
+		// TODO: Turn this into DRY-compliant
 		if(asciiMath.indexOf("x=")!= -1)	{
 			// Variables
 			var	temp=	asciiMath.substring(asciiMath.indexOf("x=")+2).toLowerCase();
 			var	userTextjs=	mathjs(temp, 'y');
 			var	userFunction=	function(y)	{	with(Math)	return eval(userTextjs);	};
 			var	colorID=	Math.trunc(Math.random()*colors.length);
-			var	userjsxgraph=	board.create("line", [-1*parseFloat(temp), 1, 0],	{
-				strokeWidth:	2,
-				strokeColor:	colors[colorID]
-			});
+			var	userjsxgraph=	board.create(
+				"curve",
+				[userFunction, function(y) { return y; }],
+				{
+					strokeWidth:	2,
+					strokeColor:	colors[colorID],
+					fixed:	true
+				}
+			);
 			var	funcObj=	{
 				graph: userjsxgraph,
 				colorID: colorID,
@@ -98,6 +104,7 @@ function graphFunction(asciiMath) {
 			setTimeout(function()	{
 				$("#userInput").css("border-color", ((i%2== 0) ? "tomato" : "rgb(102, 175, 233)"));
 			}, 200+i*200);
+			console.log(e);
 		}
 	}
 }

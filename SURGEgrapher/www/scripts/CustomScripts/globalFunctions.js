@@ -103,7 +103,7 @@ function constructTree(tree, start) {
             str = " (" + constructTree(tree[1]) + ") ";
         } break;
 		case '=':	{
-			str=	tree[1]+" = "+tree[2];
+			str=	constructTree(tree[1])+" = "+constructTree(tree[2]);
 		} break;
         default: {
             str = tree[0];
