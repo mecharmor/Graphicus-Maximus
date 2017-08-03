@@ -15,9 +15,11 @@
     IntView(1);
 
     setTimeout(function () {
+		board.moveOrigin($(window).width() / 2.0, $(window).height() / 2.0);
         $("#resetZoom").click(function () {
+			console.log(board);
             board.zoom100();
-            board.moveToOrigin(window.innerWidth / 2, window.innerHeight / 2);
+			board.moveOrigin($(window).width() / 2.0, $(window).height() / 2.0);
             IntView(1);
         });
     }, 100);

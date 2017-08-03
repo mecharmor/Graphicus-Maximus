@@ -1,4 +1,15 @@
 ﻿
+const funcs = [
+    "sin", "cos", "tan",
+    "csc", "sec", "cot",
+    "sinh", "cosh", "tanh",
+    "csch", "sech", "coth",
+    "log", "ln",
+	
+	// Special ones that are not latex, but are graphable
+	"abs"
+];
+
 //Back Button call
 function backButton() {
 
@@ -36,24 +47,29 @@ $().ready(function () {
 function txt2tex(txt) {
     // Variables
     const tree = createExpressionTree(txt.replace(/\s/g, ""));
-    const latex = constructTree(tree);
+    const latex = constructTree(tree, true);
+	
+	console.log(displayTree(tree));
+	console.log(latex);
     
     return latex;
 }
 
 // Constructs the binary expression tree
-function constructTree(tree) {
+function constructTree(tree, start) {
     if (typeof (tree) != "object")
         return tree;
 
     // Variables
     let str = "";
-
-    // This is usually the root
-    if (typeof (tree[0]) == "object") {
-        str = constructTree(tree[0]);
-        return str;
-    }
+	
+	if(start)	{
+		for(let i= 0; i< tree.length; i++)	{
+			str+=	constructTree(tree[i])+" ";
+		}
+		return str;
+	}
+	
     switch (tree[0]) {
         case '+': {
             str = constructTree(tree[1]) + " + " + constructTree(tree[2]);
@@ -71,11 +87,24 @@ function constructTree(tree) {
             str = constructTree(tree[1]) + "^{" + constructTree(tree[2]) + "} ";
         } break;
         case '{': {
-            str = " \\" + tree[1] + "{(" + constructTree(tree[2]) + ")} ";
+			if(tree[1].indexOf("_")!= -1)	{
+				tree[1]=	insert(tree[1], tree[1].indexOf("_"), "^{")+"}";
+			}
+			switch(tree[1])	{
+				case "abs":
+					str=	" "+tree[1]+"("+constructTree(tree[2])+") ";
+					break;
+				default:
+					str = " \\" + tree[1] + "{(" + constructTree(tree[2]) + ")} ";
+					break;
+			}
         } break;
         case "()": {
             str = " (" + constructTree(tree[1]) + ") ";
         } break;
+		case '=':	{
+			str=	tree[1]+" = "+tree[2];
+		} break;
         default: {
             str = tree[0];
         }break;
@@ -124,6 +153,7 @@ function isSpecialChar(c) {
         case '/':
         case '^':
         case '{':
+		case '=':
             return true;
     }
 
@@ -132,6 +162,8 @@ function isSpecialChar(c) {
 
 function getPrecedence(op) {
     switch (op) {
+		case '=':
+			return -1;
         case '+':
         case '-':
             return 1;
@@ -139,9 +171,9 @@ function getPrecedence(op) {
         case '*':
             return 2;
         case '^':
-            return 3;
-        case '{':
             return 4;
+		case '{':
+			return 3;
         default:
             return 0;
     }
@@ -152,6 +184,14 @@ function replaceAt(str, index, replacement) {
     return str.substr(0, index) + replacement + str.substr(index + replacement.length);
 }
 
+function insert(str, index, insertion)	{
+	return str.substr(0, index)+insertion+str.substr(index+1);
+}
+
+function remove(str, index)	{
+	return str.substr(0, index)+str.substr(index+1);
+}
+
 function createExpressionTree(txt) {
     // Variables
     let tree = [];
@@ -159,6 +199,7 @@ function createExpressionTree(txt) {
     let txtIndex = -1;
 
     function doBinary(op) {
+		console.log(displayTree(tree));
         // If it is a parenthesis, then only have it as ["()", operand]
         if (op == "()") {
             // Variables
@@ -173,6 +214,15 @@ function createExpressionTree(txt) {
         
         tree.push([op, left, right]);
     }
+	
+	for(let i= 0; i< funcs.length; i++)	{
+		do	{
+			txtIndex=	txt.indexOf(funcs[i]+"^", txtIndex+1);
+			if(txtIndex!= -1)
+				txt=	replaceAt(txt, txt.indexOf("^", txtIndex), "_");
+		}while(txtIndex!= -1 && txtIndex< txt.length);	
+		txtIndex=	-1;
+	}
 
     // Makes sure that )( multiplies, but not )- kind of thing
     do {
@@ -212,6 +262,7 @@ function createExpressionTree(txt) {
                     doBinary.call(this, operatorStack.pop());
                 }
                 break;
+			case '=':
             case '+':
             case '*':
             case '/':
@@ -237,22 +288,42 @@ function createExpressionTree(txt) {
                     break;
                 }
             default:
+				// Variables
+				let	specialExpCase=	false;
+				
                 // If the command is ^ with no enclosure then make sure you can do x^2^2 kind of stuff
-                if (txt[i] == '^' && txt[i] != '(') {
+                if (txt[i] == '^')	{
                     // If there was an already registered ^ command, then push it to the stack without taking anything out
                     if (operatorStack[operatorStack.length - 1] == '^') {
                         operatorStack.push(txt[i]);
                         break;
                     }
+					
                     // Else do everything as if it's normal
                     // Variables
                     let prec = getPrecedence(txt[i]);
-
-                    while (operatorStack.length > 0 && prec <= getPrecedence(operatorStack[operatorStack.length - 1])) {
-                        doBinary.call(this, operatorStack.pop());
+					let	temp=	"";
+					
+                    for (let a = i-1; a >= 0; a--) {
+						if(!txt[a].match(/\w/))
+							break;
+                        temp= txt[a] + temp;
+						for(let b= 0; b< funcs.length; b++)	{
+							if(temp.indexOf(funcs[b])!= -1)	{
+								specialExpCase=	true;
+								break;
+							}
+						}
+						if(specialExpCase)
+							break;
                     }
-                    operatorStack.push(txt[i]);
-                    break;
+					if(!specialExpCase)	{						
+						while (operatorStack.length > 0 && prec <= getPrecedence(operatorStack[operatorStack.length - 1])) {
+							doBinary.call(this, operatorStack.pop());
+						}
+						operatorStack.push(txt[i]);
+						break;
+					}
                 }
 
                 // Variables
@@ -267,14 +338,27 @@ function createExpressionTree(txt) {
                         if (txt[i] == '-' && i == n) {
                             // Do nothing for effect
                         }
+						//else if(txt[i]== '^' && specialExpCase)	{
+							// Continue to do nothing for effect
+						//}
                         else
                             break;
                     }
                     i++;
                 }
                 // Variables
+				let _prec = getPrecedence('*');
                 let str = txt.substring(n, i--);
-                let q = -1;
+				let	p=	0;
+                let q = str.length;
+				
+				// Locates the constants before the variables
+				for(let a= 0; a< str.length; a++)	{
+					if(!str[a].match(/[0-9]/))	{
+						p=	a;
+						break;
+					}
+				}
 
                 // If there was a parenthesis at the end of this operand, then
                 // find if it is a function of some kind
@@ -282,21 +366,51 @@ function createExpressionTree(txt) {
                     // Variables
                     let funcName = "";
                     let c = 0;
-
+					//let	d=	(txt[i]== '_');
+					//let	e=	-1;
+					let	found=	false;
+					
                     // Reverse searches bro :sunglasses: :+1:
                     for (let a = str.length - 1; a >= 0; a--) {
                         funcName = str[a] + funcName;
-                        if (funcs.indexOf(funcName) != -1) {
+						for(let b= 0; b< funcs.length; b++)	{
+							if(funcName.indexOf(funcs[b])!= -1)	{
+								found=	true;
+								break;
+							}
+						}
+                        if(found) {
                             for (let b = i + 2; b < txt.length; b++) {
-                                if (txt[b] == '(') c++;
-                                if (txt[b] == ')' && c == 0) {
-                                    txt = replaceAt(txt, i + 1, '{');
-                                    txt = replaceAt(txt, b, '}');
-                                    break;
-                                }
-                                else if (txt[b] == ')') {
-                                    c--;
-                                }
+								/*if(d)	{
+									if(txt[b]== '(')	c++;
+									if(txt[b]== ')' && c== 0)	{
+										b+=	1;
+										console.log(txt[b]);
+										txt=	remove(txt, b);
+										console.log(txt[b], "TEST", txt.substring(i+1, b));
+										d=	false;
+										e=	b;
+										txt = replaceAt(txt, i+1, '[');
+										txt = replaceAt(txt, b-1, ']');
+										str=	str+txt.substring(txt.indexOf(str)+str.length, b-a);
+										console.log(str);
+										console.log(str.substring(a), a, b, b-a);
+									}
+									else if(txt[b]== ')')	{
+										c--;
+									}
+								}
+								else	{*/
+									if(txt[b] == '(')	c++;
+									if(txt[b] == ')' && c == 0) {
+										txt = replaceAt(txt, i+1, '{');
+										txt = replaceAt(txt, b, '}');
+										break;
+									}
+									else if(txt[b] == ')') {
+										c--;
+									}
+								//}
                             }
                             q = a;
                             break;
@@ -306,22 +420,33 @@ function createExpressionTree(txt) {
                 else {
                     str = str.replace(/(sin|cos|tan|csc|sec|cot|sinh|cosh|tanh|csch|sech|coth|log|ln)/g, "\\$1 ");
                 }
-
-                // If there is no command slapped in, then push regularly
-                if(q<= 0)
-                    tree.push(str);
-                // Else push the first bit, push a multiplier, lastly push the command
-                else {
-                    // Variables
-                    let prec = getPrecedence('*');
-
-                    tree.push(str.substring(0, q));
-
-                    while (operatorStack.length > 0 && prec <= getPrecedence(operatorStack[operatorStack.length - 1])) {
+				
+				if(p== 0)	{
+					tree.push(str.substring(0, q));
+				}
+				else	{
+					tree.push(str.substring(0, p));
+					
+                    while (operatorStack.length > 0 && _prec <= getPrecedence(operatorStack[operatorStack.length - 1])) {
                         doBinary.call(this, operatorStack.pop());
                     }
                     operatorStack.push('*');
-
+					
+					tree.push(str.substring(p, q));
+					
+				}
+				
+				// Function found baby
+				if(q!= str.length)	{
+					if(q> 0 && operatorStack[operatorStack.length-1]!= '*')	{
+						while (operatorStack.length > 0 && _prec <= getPrecedence(operatorStack[operatorStack.length - 1])) {
+							doBinary.call(this, operatorStack.pop());
+						}
+						operatorStack.push('*');
+					}
+					else if(operatorStack[operatorStack.length-1]!= '*')
+						tree.pop();
+					
                     tree.push(str.substring(q));
                 }
                 break;
@@ -334,11 +459,3 @@ function createExpressionTree(txt) {
 
     return tree;
 }
-
-const funcs = [
-    "sin", "cos", "tan",
-    "csc", "sec", "cot",
-    "sinh", "cosh", "tanh",
-    "csch", "sech", "coth",
-    "log", "ln", "^"
-];
