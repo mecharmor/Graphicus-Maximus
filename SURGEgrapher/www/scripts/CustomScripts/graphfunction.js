@@ -48,11 +48,37 @@ function graphFunction(asciiMath) {
         return;
 	
 	try	{
+		if(asciiMath.indexOf("x=")!= -1)	{
+			// Variables
+			var	temp=	asciiMath.substring(asciiMath.indexOf("x=")+2).toLowerCase();
+			var	userTextjs=	mathjs(temp, 'y');
+			var	userFunction=	function(y)	{	with(Math)	return eval(userTextjs);	};
+			var	colorID=	Math.trunc(Math.random()*colors.length);
+			var	userjsxgraph=	board.create("line", [-1*parseFloat(temp), 1, 0],	{
+				strokeWidth:	2,
+				strokeColor:	colors[colorID]
+			});
+			var	funcObj=	{
+				graph: userjsxgraph,
+				colorID: colorID,
+				text: asciiMath.toLowerCase(),
+				latex:  txt2tex(asciiMath.toLowerCase())
+			};
+			
+			functions.push(funcObj);
+			remakeFunctionList();
+			$("#userInput").val("");
+			return;
+		}
+		
 		//change user string to javascript math inside a function (javascript magic!)
 		var userTextjs = mathjs(asciiMath.toLowerCase(), 'x');
 		var userFunction = function (x) { with (Math) return eval(userTextjs); };
 		var colorID = Math.trunc(Math.random() * colors.length);
-		var userjsxgraph = board.create('functiongraph', [userFunction], { strokeWidth: 2, strokeColor: colors[colorID] });
+		var userjsxgraph = board.create('functiongraph', userFunction, {
+			strokeWidth: 2,
+			strokeColor: colors[colorID]
+		});
 
 		var funcObj = {
 			graph: userjsxgraph,
@@ -64,7 +90,7 @@ function graphFunction(asciiMath) {
 		functions.push(funcObj);
 		//add this to the end of the function list
 		remakeFunctionList();
-    $("#userInput").val("");
+		$("#userInput").val("");
 	
 	} catch(e)	{
 		// Original border color: rgb(102, 175, 233)
