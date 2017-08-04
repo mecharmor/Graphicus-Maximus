@@ -67,9 +67,15 @@
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <!--<div class="btn-group">
+                            <button class='btn btn-default'>Edit: <span class='glyphicon glyphicon-console'></span></button>
+                            <button class='btn btn-default'>Color: <span class='glyphicon glyphicon-tint'></span></button>
+                            <button name='delete' class='btn btn-default'>Delete: <i class='glyphicon glyphicon-trash'></i></button>
+                        </div>
+                        <br />-->
                         <!-- TODO: Find out what to do with this page??? -->
-                        <span id="resetZoom" class="btn btn-primary" style="width:100%;">
-                            Reset Zoom
+                        <span id="resetZoom" class="btn btn-primary" data-dismiss="modal" onclick="boxBlur(0)">
+                            Reset Zoom <i class="glyphicon glyphicon-screenshot"></i>
                         </span>
                         <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="boxBlur(0)"><span class="glyphicon glyphicon-remove-circle"></span> Close</button>
                     </div>

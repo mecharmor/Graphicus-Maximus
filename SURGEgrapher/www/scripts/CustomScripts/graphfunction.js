@@ -111,15 +111,16 @@ function graphFunction(asciiMath) {
 function appendFunctionList(funcJson) {
     var index = functions.indexOf(funcJson);
     var inputField = 
-        $("<div class='input-group' >" +
+        $("<div class='input-group' style='max-width:90%;' >" +
         "<div class='input-group-btn'>" +
             "<button name='edit' value='" + index + "' class='btn btn-info'><i class='glyphicon glyphicon-console'></i></button>" +
-            "<button class='btn btn-default disabled katex-text' style='color:"+colors[functions[index].colorID]+";'>" + funcJson.text + "</button>" +
-            "<button name='delete' value='"+index+"' class='btn btn-danger'><i class='glyphicon glyphicon-trash'></i></button>" +
+            "<button class='btn btn-default disabled katex-text'>" + funcJson.text + "</button>" +
+            "<button class='btn btn-default color-picker' style='color:" + colors[functions[index].colorID] +";'><span class='glyphicon glyphicon-tint'></span></button>" + 
+            "<button name='delete' value='" + index + "' class='btn btn-danger'><i class='glyphicon glyphicon-trash'></i></button>" +
         "</div>" +
         "</div>");
 
-    inputField.find(".katex-text").on("click", function (args) {
+    inputField.find(".color-picker").on("click", function (args) {
         // Variables
         var newColorID = (functions[index].colorID + 1) % colors.length;
 

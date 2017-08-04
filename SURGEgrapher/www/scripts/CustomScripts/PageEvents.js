@@ -143,6 +143,9 @@
     */
     function IntView(x) {
 
+        //Fixes back button glitch
+        $('body').scrollTop(0);
+
         algebraDivId.hide();
         trigonometryDivId.hide();
         calculusDivId.hide();

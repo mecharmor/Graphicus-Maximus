@@ -6,6 +6,12 @@
 
 }
 
+#resetZoom {
+    width:100%;
+    margin-bottom:2em;
+}
+
+
 .modal-content {
     background: rgba(255,255,255,0.8);
 }
