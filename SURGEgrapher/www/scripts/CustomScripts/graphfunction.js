@@ -129,7 +129,7 @@ function appendFunctionList(funcJson) {
             strokeColor: colors[newColorID]
         });
         // Switches the color on the dom
-        args.target.style.color = colors[newColorID];
+        inputField.find(".katex-text").css("color", colors[newColorID]);
 
         functions[index].colorID = newColorID;
     });

@@ -26,8 +26,7 @@ function backButton() {
 
     //Fixes back button glitch
     $('body').scrollTop(0);
-
-
+    
 }
 
 //Keep menu in focus while scrolling
