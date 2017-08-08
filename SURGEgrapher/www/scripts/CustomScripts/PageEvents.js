@@ -43,29 +43,50 @@
     for (let i = 0; i < m.length; i++)	{
         //console.log(m[i]);
         mc[i] = new Hammer(m[i]);
-        //on pan, call function to move
+        ////on pan, call function to move
         mc[i].on("pan", temp_pan);
+
+        //$(m[i]).on("tap", temp_pan).on("taphold", temp_pan);
     }
+    
+    $("#box").on("tap", function (args) {
+        if (args.clientX === 0 && args.clientY=== 0)
+            return;
+
+        // Variables
+        var oldX = (menu.css("left").replace("px", ""))+(menu.css("width").replace("px", "")/2);
+        var oldY = (menu.css("top").replace("px", ""))+(menu.css("height").replace("px", "")/2);
+        var newX = args.clientX;
+        var newY = args.clientY;
+        var radius = 128; // In pixels
+        
+        // Prevent button from snapping to the top corner of window
+        if (Math.abs(newX - oldX)> radius && Math.abs(newY - oldY)> radius) {
+            return;
+        }
+        menu.css("left", (newX-32) + "px").css("top", (newY-32) + "px");
+    });
 
     //Troubleshooting Panning
     function temp_pan(args) {
-        if (!args.center) {
-            return;
+        if (args.center) {
+            args.clientX = args.center.x;
+            args.clientY = args.center.y;
         }
-        // Prevent button from snapping to the top corner of window
-        if (args.center.x == 0 && args.center.y == 0) {
+        if (args.clientX === 0 && args.clientY === 0)
             return;
-        }
+
+        console.log(args.clientX, args.clientY);
 
         // Variables
-        var x = args.center.x;
-        var y = args.center.y;
+        var x = args.clientX;
+        var y = args.clientY;
         // The width and height are for simplicity's sake
         var w = window.innerWidth;
         var h = window.innerHeight;
         var _dragState = "";
 
-        menu.css("left", (x-32) + "px").css("top", (y-32) + "px");
+        menu.css("left", (x-32)+"px").css("top", (y-32)+"px");
 
         // Gets the drag state from the location on the window
         // The left right part
@@ -172,7 +193,7 @@
         // Variables
         // A variable to see if this is from the toggle event or from
         // the drag event. Effieciently makes sure not to double up.
-        var changed = manualChange || (dragState != _dragState);
+        var changed = manualChange || (dragState !== _dragState);
 
         if (!changed)
             return;

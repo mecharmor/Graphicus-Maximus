@@ -31,7 +31,8 @@ function backButton() {
 
 //Keep menu in focus while scrolling
 $().ready(function () {
-    $(window).scroll(function () {
+    $(window).scroll(function (args) {
+        //alert($("#box").offset().top);
         $("#dragMenu").stop().animate({ "marginTop": ($(window).scrollTop()) }, "fast");
     });
 

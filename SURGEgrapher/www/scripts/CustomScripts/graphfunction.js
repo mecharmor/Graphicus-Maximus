@@ -56,8 +56,8 @@ function graphFunction(asciiMath) {
 			var	userFunction=	function(y)	{	with(Math)	return eval(userTextjs);	};
 			var	colorID=	Math.trunc(Math.random()*colors.length);
 			var	userjsxgraph=	board.create(
-				"curve",
-				[userFunction, function(y) { return y; }],
+				"line",
+				[-1*userFunction(0), 1, 0],
 				{
 					strokeWidth:	2,
 					strokeColor:	colors[colorID],

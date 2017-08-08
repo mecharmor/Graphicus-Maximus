@@ -32,13 +32,22 @@ $(document).ready(function () {
             needTwoFingers: false
         }
     });
-    board.resizeContainer( $(window).width(), $(window).height() );
+    resize();
 
+    //board.resizeContainer( $(window).width(), $(window).height() );
     //board.create('functiongraph', [function (x) { return Math.sin(x); }], { strokeWidth: 2 });
 
-    $(window).on('resize', function () {
+    $(window).on('resize', resize);
+
+    function resize() {
         var bb = board.getBoundingBox();
-        board.resizeContainer($(window).width(), $(window).height(), false, true);//the true = do not call setBoundingBox
+
+        board.resizeContainer(
+            window.innerWidth,
+            window.innerHeight-20,
+            false,
+            true
+        );//the true = do not call setBoundingBox
         board.setBoundingBox(bb, false);  //false = keep aspect ratio and same bb as coming in
-    });
+    }
 });
