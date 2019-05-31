@@ -1,13 +1,12 @@
-<h3 align="center">
-Graphicus Maximus (Alpha)
-</h3>
-
 ## Graphicus Maximus (Android)
 Mobile graphing calculator that is designed for College of the Sequoias students to use in Algebra, Trigonometry, and Calculus.
 
 ### [Download Graphicus Maximus App](https://play.google.com/store/apps/details?id=com.eduNetSystems.graphicusMaximus&hl=en_US)
-![daug_demo](https://github.com/mecharmor/Graphicus-Maximus/blob/master/SURGEgrapher/www/images/cordova.png)
-
+<p align="center">
+<a href="https://play.google.com/store/apps/details?id=com.eduNetSystems.graphicusMaximus&hl=en_US">
+<img alt="EventUp" src="https://github.com/mecharmor/Graphicus-Maximus/blob/master/SURGEgrapher/www/images/cordova.png" width="250">
+</a>
+</p>
 
 ## Functionality
 - Users can graph equations
