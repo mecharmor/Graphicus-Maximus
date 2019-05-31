@@ -1,10 +1,23 @@
-# SURGEgrapher
-SURGE Graphing Calculator App
+<h3 align="center">
+Graphicus Maximus (Alpha)
+</h3>
 
-Moved to VS 2017 for this project.
+## Graphicus Maximus (Android)
+Mobile graphing calculator that is designed for College of the Sequoias students to use in Algebra, Trigonometry, and Calculus.
 
-Using: jQuery, Bootstrap, and jsxGraph so far.
+### [Download Graphicus Maximus App](https://play.google.com/store/apps/details?id=com.eduNetSystems.graphicusMaximus&hl=en_US)
+![daug_demo](https://github.com/mecharmor/Graphicus-Maximus/blob/master/SURGEgrapher/www/images/cordova.png)
 
-This is a meant to be a mobile app:
-https://rawgit.com/johnRedden/SURGEgrapher/master/SURGEgrapher/www/index.html
 
+## Functionality
+- Users can graph equations
+- Users can view Algebra, Trigonometry, and Calculus cheat sheets
+- Users can graph sample equations noted in cheat sheets
+- Users can graph multiple equations at the same time
+- Users can change the colors of their graphs
+
+## Feedback
+For any other questions about this repo in general please reach out to [**@mecharmor**](https://github.com/mecharmor) on Github. <br>
+PS: Feel free to fork it if you find our site interesting.
+
+> Updated on: 05/31/19, Cory Lewis
