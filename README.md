@@ -1,3 +1,10 @@
+<p align="center">
+<a href="https://play.google.com/store/apps/details?id=com.eduNetSystems.graphicusMaximus&hl=en_US">
+<img alt="EventUp" src="https://github.com/mecharmor/Graphicus-Maximus/blob/master/SURGEgrapher/www/images/cordova.png" width="250">
+</a>
+</p>
+### [Try Graphicus Maximus App](https://play.google.com/store/apps/details?id=com.eduNetSystems.graphicusMaximus&hl=en_US)
+
 ## Graphicus Maximus (Android)
 - Graphicus Maximus is a mobile friendly function graphing app with important notes optimized for community college mathematics.
 
@@ -16,13 +23,6 @@
 * Mathjs (Converts ascii math to javascript math)
 * LaTex via KaTex (Styles math for web)
 
-### [Download Graphicus Maximus App](https://play.google.com/store/apps/details?id=com.eduNetSystems.graphicusMaximus&hl=en_US)
-<p align="center">
-<a href="https://play.google.com/store/apps/details?id=com.eduNetSystems.graphicusMaximus&hl=en_US">
-<img alt="EventUp" src="https://github.com/mecharmor/Graphicus-Maximus/blob/master/SURGEgrapher/www/images/cordova.png" width="250">
-</a>
-</p>
-
 ## Functionality
 - Users can graph equations
 - Users can view Algebra, Trigonometry, and Calculus cheat sheets
@@ -36,5 +36,7 @@ PS: Feel free to fork it if you find our site interesting.
 
 ## Acknowledgements
 Funding for this project was provided by the College of the Sequoias SURGE program, which is funded by the US Department of Education MSEIP grant #P120A130106.
+
+### [Try Graphicus Maximus App](https://play.google.com/store/apps/details?id=com.eduNetSystems.graphicusMaximus&hl=en_US)
 
 > Updated on: 05/31/19, Cory Lewis
