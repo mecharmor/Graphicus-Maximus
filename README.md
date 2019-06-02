@@ -1,20 +1,20 @@
 ## Graphicus Maximus (Android)
--Graphicus Maximus is a mobile friendly function graphing app with important notes optimized for community college mathematics.
+- Graphicus Maximus is a mobile friendly function graphing app with important notes optimized for community college mathematics.
 
 ## Project Objectives
 
-*Design an efficient, effective, and useful web application.
-*Become familiar with languages, programs, and existing open source javascript and css libraries.
-*Publish to Google Play Store, so this is mobile first and mobile friendly project.
-*Open source project (all free and freely available tools)
-*Complete an internship that emulates the full app development experience from idea to implementation and publication.
+* Design an efficient, effective, and useful web application.
+* Become familiar with languages, programs, and existing open source javascript and css libraries.
+* Publish to Google Play Store, so this is mobile first and mobile friendly project.
+* Open source project (all free and freely available tools)
+* Complete an internship that emulates the full app development experience from idea to implementation and publication.
 
 ## Libraries Used
-*Bootstrap (For Styling)
-*jQuery & jQuery Mobile (For touch friendliness)
-*jsxGraph (Open Source Javascript Graphing Library)
-*Mathjs (Converts ascii math to javascript math)
-*LaTex via KaTex (Styles math for web)
+* Bootstrap (For Styling)
+* jQuery & jQuery Mobile (For touch friendliness)
+* jsxGraph (Open Source Javascript Graphing Library)
+* Mathjs (Converts ascii math to javascript math)
+* LaTex via KaTex (Styles math for web)
 
 ### [Download Graphicus Maximus App](https://play.google.com/store/apps/details?id=com.eduNetSystems.graphicusMaximus&hl=en_US)
 <p align="center">
