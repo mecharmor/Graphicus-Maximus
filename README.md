@@ -3,6 +3,7 @@
 <img alt="EventUp" src="https://github.com/mecharmor/Graphicus-Maximus/blob/master/SURGEgrapher/www/images/cordova.png" width="250">
 </a>
 </p>
+
 ### [Try Graphicus Maximus App](https://play.google.com/store/apps/details?id=com.eduNetSystems.graphicusMaximus&hl=en_US)
 
 ## Graphicus Maximus (Android)
